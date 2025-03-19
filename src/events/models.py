@@ -1,6 +1,5 @@
 import uuid
 
-from django.contrib import admin
 from django.db import models
 
 
@@ -31,7 +30,3 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
-
-
-admin.site.register(Location)
-admin.site.register(Event)

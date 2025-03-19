@@ -2,6 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Event
 from .serializers import EventSerializer
@@ -13,6 +14,7 @@ class EventPagination(PageNumberPagination):
 
 
 class EventViewSet(ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Event.objects.select_related("location").order_by("date")
     serializer_class = EventSerializer
     pagination_class = EventPagination
